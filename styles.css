@@ -1,0 +1,22 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; color: #f7fafc; background: #101820; }
+* { box-sizing: border-box; }
+body { margin: 0; overflow: hidden; }
+#camera { position: fixed; inset: 0; overflow: hidden; isolation: isolate; }
+header { position: fixed; top: 0; width: 100%; padding: max(24px, env(safe-area-inset-top)) 24px 50px; pointer-events: none; background: linear-gradient(#101820e8, transparent); }
+.badge { color: #6ce9df; font-size: 11px; letter-spacing: 2px; font-weight: 700; }
+h1 { font-size: clamp(24px, 5vw, 36px); margin: 9px 0; }
+#status { font-size: 14px; max-width: 550px; margin: 0; }
+.controls { position: fixed; bottom: max(16px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); width: min(420px, calc(100% - 32px)); padding: 16px; border-radius: 20px; background: #15232de8; border: 1px solid #ffffff20; max-height: 65dvh; overflow: auto; }
+.actions { display: flex; gap: 10px; }
+button, select { font: inherit; border: 0; border-radius: 10px; padding: 12px; }
+button { cursor: pointer; background: #55e4d7; color: #102229; font-weight: 650; }
+.actions button { flex: 1; }
+button:disabled { opacity: .5; cursor: default; }
+#stop, .secondary { background: #ffffff12; color: white; }
+summary { cursor: pointer; padding: 15px 0 7px; }
+label { display: flex; justify-content: space-between; font-size: 13px; margin-top: 12px; }
+input, select { width: 100%; accent-color: #55e4d7; margin: 8px 0; }
+.secondary { width: 100%; margin-top: 8px; }
+.hint, #privacy { font-size: 11px; color: #c0ced6; line-height: 1.5; margin: 12px 0 0; }
+#privacy { font-size: 10px; margin-top: 5px; }
+button:focus-visible, summary:focus-visible, select:focus-visible { outline: 2px solid white; outline-offset: 3px; }
