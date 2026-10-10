@@ -10,6 +10,7 @@
 <script type="module">
 import * as THREE from 'three';
 import { createEyePatch } from './eyepatch.js';
+import { landmarks } from './preview-face.js';
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
@@ -19,7 +20,8 @@ const camera = new THREE.PerspectiveCamera(40,1,0.01,10);
 camera.position.set(0,0.18,1.8); camera.lookAt(0,0,-0.1);
 scene.add(new THREE.HemisphereLight(0xffffff,0x708090,1.5));
 const light=new THREE.DirectionalLight(0xffffff,1);light.position.set(1,2,3);scene.add(light);
-const {group}=createEyePatch();scene.add(group);group.rotation.y=-20*Math.PI/180;
+const {group, update}=createEyePatch();
+update(landmarks, landmarks[356][0] - landmarks[127][0]);scene.add(group);group.rotation.y=-20*Math.PI/180;
 function draw(){renderer.render(scene,camera)}
 function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();draw()}
 document.getElementById('rotation').addEventListener('input',event=>{group.rotation.y=Number(event.target.value)*Math.PI/180;draw()});

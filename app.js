@@ -37,6 +37,10 @@ async function start() {
         lastVisible = anchor.group.visible;
         status(lastVisible ? '' : 'Посмотрите в камеру, чтобы появилась повязка.');
       }
+      if (anchor.group.visible) {
+        const estimate = mindar.getLatestEstimate();
+        eyePatch.update(estimate?.metricLandmarks, estimate?.faceScale);
+      }
       renderer.render(scene, camera);
     });
   } catch (error) {
