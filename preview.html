@@ -2,24 +2,24 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>3D-модель очков — просмотр без камеры</title>
-  <style>body{margin:0;background:#101820;color:#f7fafc;font:16px system-ui}header{position:absolute;top:20px;left:24px;right:24px}h1{font-size:25px}p{font-size:13px;color:#b8cbd5}a{color:#55e4d7}#view{height:100dvh}footer{position:absolute;bottom:24px;left:24px;right:24px}input{width:min(400px,90%);accent-color:#55e4d7}label{display:block}</style>
+  <title>3D-модель пиратской повязки — просмотр без камеры</title>
+  <style>body{margin:0;background:#c5d0d5;color:#15232d;font:16px system-ui}header{position:absolute;top:20px;left:24px;right:24px}h1{font-size:25px}p{font-size:13px;color:#304653}a{color:#075950}#view{height:100dvh}footer{position:absolute;bottom:24px;left:24px;right:24px}input{width:min(400px,90%);accent-color:#55e4d7}label{display:block}</style>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.151.3/build/three.module.js"}}</script>
 </head>
-<body><header><h1>3D-модель виртуальных очков</h1><p>Просмотр геометрии без камеры. Трекинг лица здесь не запускается.</p><a href="./">Открыть WebAR</a></header><main id="view"></main><footer><label for="rotation">Поворот модели</label><input id="rotation" type="range" min="-70" max="70" value="-20"></footer>
+<body><header><h1>3D-модель пиратской повязки</h1><p>Просмотр геометрии без камеры. Трекинг лица здесь не запускается.</p><a href="./">Открыть WebAR</a></header><main id="view"></main><footer><label for="rotation">Поворот модели</label><input id="rotation" type="range" min="-70" max="70" value="-20"></footer>
 <script type="module">
 import * as THREE from 'three';
-import { createGlasses } from './glasses.js';
+import { createEyePatch } from './eyepatch.js';
 const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer({antialias:true});
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));
-renderer.setClearColor('#101820');
+renderer.setClearColor('#c5d0d5');
 document.getElementById('view').appendChild(renderer.domElement);
 const camera = new THREE.PerspectiveCamera(40,1,0.01,10);
 camera.position.set(0,0.18,1.8); camera.lookAt(0,0,-0.1);
 scene.add(new THREE.HemisphereLight(0xffffff,0x708090,1.5));
 const light=new THREE.DirectionalLight(0xffffff,1);light.position.set(1,2,3);scene.add(light);
-const {group}=createGlasses();scene.add(group);group.rotation.y=-20*Math.PI/180;
+const {group}=createEyePatch();scene.add(group);group.rotation.y=-20*Math.PI/180;
 function draw(){renderer.render(scene,camera)}
 function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();draw()}
 document.getElementById('rotation').addEventListener('input',event=>{group.rotation.y=Number(event.target.value)*Math.PI/180;draw()});
